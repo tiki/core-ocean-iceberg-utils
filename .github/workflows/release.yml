@@ -47,7 +47,7 @@ jobs:
         with:
           access-token: ${{ secrets.github_token }}
           version-prefix:
-          pom-path: ./parent
+          pom-path: parent
 
       - name: Maven Publish
         run: cd parent && mvn --batch-mode clean deploy
