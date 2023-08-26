@@ -38,6 +38,8 @@ jobs:
 
       - name: Autobuild
         uses: github/codeql-action/autobuild@v2
+        with:
+          working-directory: common
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
@@ -69,6 +71,8 @@ jobs:
 
       - name: Autobuild
         uses: github/codeql-action/autobuild@v2
+        with:
+          working-directory: parent
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
