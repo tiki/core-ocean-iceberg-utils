@@ -1,0 +1,19 @@
+version: 2
+updates:
+  - package-ecosystem: "maven"
+    directory: "common"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "mvn"
+    labels:
+      - "chore"
+
+  - package-ecosystem: "github-actions"
+    directory: "parent"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "gh-action"
+    labels:
+      - "chore"
