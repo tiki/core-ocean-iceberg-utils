@@ -12,7 +12,6 @@ concurrency:
 
 jobs:
   common:
-    name: Analyze
     runs-on: ubuntu-22.04
     permissions:
       actions: read
@@ -34,20 +33,16 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
         with:
+          languages: java
           source-root: common
 
       - name: Autobuild
         uses: github/codeql-action/autobuild@v2
-        with:
-          source-root: common
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
-        with:
-          source-root: common
 
   parent:
-    name: Analyze
     runs-on: ubuntu-22.04
     permissions:
       actions: read
@@ -69,14 +64,11 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
         with:
+          languages: java
           source-root: parent
 
       - name: Autobuild
         uses: github/codeql-action/autobuild@v2
-        with:
-          source-root: parent
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
-        with:
-          source-root: parent
