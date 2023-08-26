@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  analyze:
+  common:
     name: Analyze
     runs-on: ubuntu-22.04
     permissions:
@@ -33,9 +33,50 @@ jobs:
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
+        with:
+          source-root: common
 
       - name: Autobuild
         uses: github/codeql-action/autobuild@v2
+        with:
+          source-root: common
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
+        with:
+          source-root: common
+
+  parent:
+    name: Analyze
+    runs-on: ubuntu-22.04
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '20'
+          distribution: 'zulu'
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+        with:
+          source-root: parent
+
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v2
+        with:
+          source-root: parent
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
+        with:
+          source-root: parent
