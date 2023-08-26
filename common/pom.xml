@@ -13,6 +13,24 @@
     <packaging>jar</packaging>
 
     <name>TIKI Ocean Common Library</name>
+    <description>Library for common Ocean classes</description>
+    <url>https://github.com/tiki-bar/tiki-ocean</url>
+    <scm>
+        <url>https://github.com/tiki-bar/tiki-ocean</url>
+    </scm>
+    <licenses>
+        <license>
+            <name>MIT</name>
+            <url>https://github.com/tiki-bar/tiki-ocean/blob/main/LICENSE</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <organization>Tiki inc.</organization>
+            <organizationUrl>https://mytiki.com</organizationUrl>
+        </developer>
+    </developers>
 
     <parent>
         <groupId>com.mytiki</groupId>

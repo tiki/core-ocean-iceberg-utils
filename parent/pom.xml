@@ -14,6 +14,24 @@
     <packaging>pom</packaging>
 
     <name>TIKI Ocean Parent</name>
+    <description>Parent POM for Ocean modules</description>
+    <url>https://github.com/tiki-bar/tiki-ocean</url>
+    <scm>
+        <url>https://github.com/tiki-bar/tiki-ocean</url>
+    </scm>
+    <licenses>
+        <license>
+            <name>MIT</name>
+            <url>https://github.com/tiki-bar/tiki-ocean/blob/main/LICENSE</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <organization>Tiki inc.</organization>
+            <organizationUrl>https://mytiki.com</organizationUrl>
+        </developer>
+    </developers>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
