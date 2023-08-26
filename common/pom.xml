@@ -13,6 +13,24 @@
     <packaging>jar</packaging>
 
     <name>TIKI Ocean Common Library</name>
+    <description>Library for common Ocean classes</description>
+    <url>https://github.com/tiki-bar/tiki-ocean</url>
+    <scm>
+        <url>https://github.com/tiki-bar/tiki-ocean</url>
+    </scm>
+    <licenses>
+        <license>
+            <name>MIT</name>
+            <url>https://github.com/tiki-bar/tiki-ocean/blob/main/LICENSE</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <organization>Tiki inc.</organization>
+            <organizationUrl>https://mytiki.com</organizationUrl>
+        </developer>
+    </developers>
 
     <parent>
         <groupId>com.mytiki</groupId>
@@ -37,7 +55,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.4</version>
+                <version>3.5.0</version>
                 <configuration>
                 </configuration>
                 <executions>
@@ -65,7 +83,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.4.1</version>
+                <version>3.5.0</version>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
@@ -89,7 +107,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
-                <version>3.0.1</version>
+                <version>3.1.0</version>
                 <executions>
                     <execution>
                         <id>sign-artifacts</id>
