@@ -40,7 +40,7 @@ jobs:
           branch: ${{ steps.getpr.outputs.branch }}
 
       - name: Update Version
-        run: xmlstarlet ed -L -u "/project/version" -v "${{ steps.semver.outputs.nextStrict }}" pom.xml
+        run: xmlstarlet ed -L -u "/project/version" -v "${{ steps.semver.outputs.nextStrict }}" common/pom.xml
 
       - name: Commit Changes
         continue-on-error: true
