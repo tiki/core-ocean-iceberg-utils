@@ -52,7 +52,7 @@ jobs:
 
       - name: Get Version
         id: version
-        run: echo "current=$(xmlstarlet sel -t -v '/project/version' common/pom.xml)" >> $GITHUB_OUTPUT
+        run: echo "current=$(xmlstarlet sel -t -m _:project -v _:version common/pom.xml)" >> $GITHUB_OUTPUT
 
       - name: Create Release
         uses: ncipollo/release-action@v1
