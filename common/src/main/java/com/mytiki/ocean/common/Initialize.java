@@ -20,7 +20,7 @@ public class Initialize {
     public static Properties properties(String name) {
         try (InputStream input = Initialize.class
                 .getClassLoader()
-                .getResourceAsStream("iceberg.properties")) {
+                .getResourceAsStream(name)) {
             Properties properties = new Properties();
             properties.load(input);
             return properties;

@@ -36,7 +36,11 @@ public class Iceberg extends GlueCatalog {
     }
 
     public static Iceberg load() {
-        Properties properties = Initialize.properties("iceberg.properties");
+        return Iceberg.load("iceberg.properties");
+    }
+
+    public static Iceberg load(String filename) {
+        Properties properties = Initialize.properties(filename);
         return new Iceberg(properties);
     }
 
