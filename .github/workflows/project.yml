@@ -10,7 +10,7 @@ on:
 
 jobs:
   add-issue:
-    if: github.event.issues
+    if: github.event.issues.opened == true
     name: Add issue to project
     runs-on: ubuntu-latest
     steps:
@@ -19,7 +19,7 @@ jobs:
           project-url: https://github.com/orgs/tiki/projects/1
           github-token: ${{ secrets.GH_PROJECT_PAT }}
   add-pr:
-    if: github.event.pull_request
+    if: github.event.pull_request.opened == true
     name: Add PR to project
     runs-on: ubuntu-latest
     steps:
