@@ -27,3 +27,11 @@ jobs:
         with:
           project-url: https://github.com/orgs/tiki/projects/1
           github-token: ${{ secrets.GH_PROJECT_PAT }}
+      - uses: austenstone/project-update@main
+        with:
+          project-number: 1
+          organization: tiki
+          github-token: ${{ secrets.GH_PROJECT_PAT }}
+          item-id: ${{ github.event.number }}
+          field-names: Sprint
+          field-values: "[0]"
