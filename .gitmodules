@@ -1,6 +1,0 @@
-[submodule "metadata"]
-	path = metadata
-	url = https://github.com/tiki-bar/tiki-ocean-metadata.git
-[submodule "catalog"]
-	path = catalog
-	url = https://github.com/tiki-bar/tiki-ocean-catalog.git
