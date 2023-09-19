@@ -38,12 +38,9 @@ jobs:
         uses: github/codeql-action/init@v2
         with:
           languages: java
-          source-root: common
 
       - name: Autobuild
         uses: github/codeql-action/autobuild@v2
-        with:
-          working-directory: common
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
