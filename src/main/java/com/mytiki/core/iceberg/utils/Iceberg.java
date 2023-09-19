@@ -3,14 +3,13 @@
  * MIT license. See LICENSE file in root directory.
  */
 
-package com.mytiki.ocean.common;
+package com.mytiki.core.iceberg.utils;
 
 import org.apache.iceberg.aws.glue.GlueCatalog;
 import org.apache.iceberg.catalog.Namespace;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;

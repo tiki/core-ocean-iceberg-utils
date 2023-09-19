@@ -5,34 +5,19 @@
   -->
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+
   <groupId>com.mytiki</groupId>
-  <artifactId>ocean-common</artifactId>
+  <artifactId>core-iceberg-utils</artifactId>
   <version>0.1.0</version>
   <packaging>jar</packaging>
-  <name>TIKI Ocean Common Library</name>
-  <description>Library for common Ocean classes</description>
-  <url>https://github.com/tiki/ocean</url>
-  <scm>
-    <url>https://github.com/tiki/ocean</url>
-  </scm>
-  <licenses>
-    <license>
-      <name>MIT</name>
-      <url>https://github.com/tiki/ocean/blob/main/LICENSE</url>
-      <distribution>repo</distribution>
-    </license>
-  </licenses>
-  <developers>
-    <developer>
-      <organization>Tiki inc.</organization>
-      <organizationUrl>https://mytiki.com</organizationUrl>
-    </developer>
-  </developers>
+  <name>Iceberg Utilities</name>
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
   </properties>
+
   <dependencies>
     <dependency>
       <groupId>com.amazonaws</groupId>
@@ -121,6 +106,7 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
   <distributionManagement>
     <snapshotRepository>
       <id>ossrh</id>
@@ -131,14 +117,31 @@
       <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
     </repository>
   </distributionManagement>
+
   <build>
     <plugins>
       <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.22.2</version>
+      </plugin>
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-shade-plugin</artifactId>
-        <version>3.5.0</version>
+        <version>3.2.2</version>
         <configuration>
-                </configuration>
+          <createDependencyReducedPom>false</createDependencyReducedPom>
+          <filters>
+            <filter>
+              <artifact>*:*</artifact>
+              <excludes>
+                <exclude>module-info.class</exclude>
+                <exclude>META-INF/*</exclude>
+                <exclude>META-INF/versions/**</exclude>
+                <exclude>META-INF/services/**</exclude>
+              </excludes>
+            </filter>
+          </filters>
+        </configuration>
         <executions>
           <execution>
             <phase>package</phase>
@@ -150,54 +153,47 @@
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-source-plugin</artifactId>
-        <version>3.3.0</version>
+        <artifactId>maven-dependency-plugin</artifactId>
         <executions>
           <execution>
-            <id>attach-sources</id>
+            <id>copy-dependencies</id>
+            <phase>prepare-package</phase>
             <goals>
-              <goal>jar-no-fork</goal>
+              <goal>copy-dependencies</goal>
             </goals>
+            <configuration>
+              <outputDirectory>
+                ${project.build.directory}/classes/java/lib
+              </outputDirectory>
+              <includeScope>runtime</includeScope>
+              <excludeScope>test</excludeScope>
+            </configuration>
           </execution>
         </executions>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.5.0</version>
+        <artifactId>maven-assembly-plugin</artifactId>
         <executions>
           <execution>
-            <id>attach-javadocs</id>
+            <phase>prepare-package</phase>
             <goals>
-              <goal>jar</goal>
+              <goal>single</goal>
             </goals>
+            <configuration>
+              <appendAssemblyId>false</appendAssemblyId>
+              <finalName>${pom.artifactId}</finalName>
+              <descriptors>
+                <descriptor>zip.xml</descriptor>
+              </descriptors>
+            </configuration>
           </execution>
         </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.sonatype.plugins</groupId>
-        <artifactId>nexus-staging-maven-plugin</artifactId>
-        <version>1.6.13</version>
-        <extensions>true</extensions>
-        <configuration>
-          <serverId>ossrh</serverId>
-          <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
-          <autoReleaseAfterClose>true</autoReleaseAfterClose>
-        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-gpg-plugin</artifactId>
-        <version>3.1.0</version>
-        <executions>
-          <execution>
-            <id>sign-artifacts</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>sign</goal>
-            </goals>
-          </execution>
-        </executions>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
       </plugin>
     </plugins>
   </build>
