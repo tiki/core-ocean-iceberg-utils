@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  common:
+  semver:
     if: startsWith(github.head_ref, 'release/')
     runs-on: ubuntu-latest
     environment: Production
@@ -40,7 +40,7 @@ jobs:
           branch: ${{ steps.getpr.outputs.branch }}
 
       - name: Update Version
-        run: xmlstarlet ed -L -u "_:project/_:version" -v "${{ steps.semver.outputs.nextStrict }}" common/pom.xml
+        run: xmlstarlet ed -L -u "_:project/_:version" -v "${{ steps.semver.outputs.nextStrict }}" pom.xml
 
       - name: Commit Changes
         continue-on-error: true
@@ -49,7 +49,7 @@ jobs:
         run: |
           git config --global user.email "action@github.com"
           git config --global user.name "GH Action"
-          git add common/pom.xml
+          git add pom.xml
           git commit -m 'version bump'
           git push
 

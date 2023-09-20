@@ -3,7 +3,7 @@
  * MIT license. See LICENSE file in root directory.
  */
 
-package com.mytiki.ocean.common;
+package com.mytiki.core.iceberg.utils;
 
 import java.util.Map;
 import java.util.Objects;

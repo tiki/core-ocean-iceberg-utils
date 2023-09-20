@@ -7,52 +7,59 @@ on:
     types:
       - closed
 
-# Cancel any active builds when new commits are pushed
+env:
+  SESSION_NAME : "gh_action"
+  AWS_REGION : "us-east-2"
+
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
   cancel-in-progress: true
 
 jobs:
-  common:
+  Deploy:
     if: github.event.pull_request.merged == true && startsWith(github.head_ref, 'release/')
     runs-on: ubuntu-latest
     environment: Production
+    permissions:
+      id-token: write
+      contents: write
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      - name: Import GPG key
-        id: import_gpg
-        uses: crazy-max/ghaction-import-gpg@v6
-        with:
-          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
-          passphrase: ${{ secrets.GPG_PASSPHRASE }}
 
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
           java-version: '20'
           distribution: 'zulu'
-          server-id: ossrh
-          server-username: MAVEN_USERNAME
-          server-password: MAVEN_PASSWORD
 
       - name: Install xmlstarlet
         run: sudo apt-get update && sudo apt-get install -y xmlstarlet
 
-      - name: Maven Package
-        run: cd common && mvn clean package
+      - name: AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          role-to-assume: arn:aws:iam::254962200554:role/GitHubDeployBase
+          role-session-name: ${{ env.SESSION_NAME }}
+          aws-region: ${{ env.AWS_REGION }}
 
-      - name: Maven Publish
-        run: cd common && mvn --batch-mode clean deploy
-        env:
-          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+      - name: SAM Deploy GitHub
+        run: cd infra/github && sam build && sam package --force-upload && sam deploy --force-upload
+
+      - name: AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          role-to-assume: arn:aws:iam::254962200554:role/GitHubDeployCoreIcebergUtils
+          role-session-name: ${{ env.SESSION_NAME }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: SAM Deploy AWS
+        run: cd infra/aws && sam build && sam deploy --force-upload
 
       - name: Get Version
         id: version
-        run: echo "current=$(xmlstarlet sel -t -m _:project -v _:version common/pom.xml)" >> $GITHUB_OUTPUT
+        run: echo "current=$(xmlstarlet sel -t -m _:project -v _:version pom.xml)" >> $GITHUB_OUTPUT
 
       - name: Create Release
         uses: ncipollo/release-action@v1
