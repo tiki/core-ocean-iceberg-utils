@@ -34,17 +34,12 @@ Resources:
                 iam:PassedToService: lambda.amazonaws.com
           - Effect: Allow
             Action:
-              - lambda:CreateFunction
-              - lambda:TagResource
-              - lambda:GetFunction
-              - lambda:UpdateFunctionCode
-              - lambda:ListTags
-              - lambda:CreateEventSourceMapping
-              - lambda:GetEventSourceMapping
-            Resource: "*"
-          - Effect: Allow
-            Action:
-              - sqs:CreateQueue
-              - sqs:GetQueueAttributes
-              - sqs:SetQueueAttributes
+              - lambda:GetLayerVersion
+              - lambda:GetLayerVersionPolicy
+              - lambda:ListLayers
+              - lambda:ListLayerVersions
+              - lambda:DeleteLayerVersion
+              - lambda:PublishLayerVersion
+              - lambda:AddLayerVersionPermission
+              - lambda:RemoveLayerVersionPermission
             Resource: "*"
