@@ -22,6 +22,7 @@ Resources:
 
   Policy:
     Type: AWS::IAM::RolePolicy
+    DependsOn: Role
     Properties:
       RoleName: !Ref RoleName
       PolicyName: DeploymentPolicy
