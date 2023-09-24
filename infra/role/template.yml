@@ -30,29 +30,23 @@ Resources:
         Version: '2012-10-17'
         Statement:
           - Effect: Allow
-            Action:
-              - iam:CreateRole
-              - iam:TagRole
-              - iam:GetRolePolicy
-              - iam:PutRolePolicy
-              - iam:AttachRolePolicy
-              - iam:GetRole
-            Resource: "*"
-          - Effect: Allow
-            Action:
-              - iam:PassRole
-            Resource: "*"
+            Action: iam:PassRole
+            Resource: !Sub arn:aws:iam::${AWS::AccountId}:role/${RoleName}
             Condition:
               StringEquals:
                 iam:PassedToService: lambda.amazonaws.com
           - Effect: Allow
             Action:
-              - lambda:GetLayerVersion
-              - lambda:GetLayerVersionPolicy
               - lambda:ListLayers
               - lambda:ListLayerVersions
-              - lambda:DeleteLayerVersion
-              - lambda:PublishLayerVersion
+            Resource: "*"
+          - Effect: Allow
+            Action:
+              - lambda:GetLayerVersion
+              - lambda:GetLayerVersionPolicy
               - lambda:AddLayerVersionPermission
               - lambda:RemoveLayerVersionPermission
-            Resource: "*"
+            Resource: !Sub arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:layer:core-iceberg-utils:*
+          - Effect: Allow
+            Action: lambda:PublishLayerVersion
+            Resource: !Sub arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:layer:core-iceberg-utils
