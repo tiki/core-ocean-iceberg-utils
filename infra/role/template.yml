@@ -50,3 +50,8 @@ Resources:
           - Effect: Allow
             Action: lambda:PublishLayerVersion
             Resource: !Sub arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:layer:core-iceberg-utils
+          - Effect: Allow
+            Action:
+              - s3:PutObject
+              - s3:GetObject
+            Resource: !Sub arn:aws:s3:::mytiki-sam-deploy/*
