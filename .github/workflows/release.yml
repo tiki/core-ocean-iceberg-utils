@@ -28,6 +28,10 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: SetVars
+        run: |
+          sed -i 's/${AWS::AccountId}/${{ secrets.AWS_ACCOUNT_ID }}/' infra/role/template.yml
+
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
@@ -40,25 +44,25 @@ jobs:
       - name: AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::254962200554:role/GitHubDeployBase
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GitHubDeployBase
           role-session-name: ${{ env.SESSION_NAME }}
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Prepare Zip
         run: mvn prepare-package
 
-      - name: SAM Deploy GitHub
-        run: cd infra/github && sam build && sam package --force-upload && sam deploy --force-upload
+      - name: SAM Deploy Role
+        run: cd infra/role && sam build && sam package && sam deploy
 
       - name: AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::254962200554:role/GitHubDeployCoreIcebergUtils
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GitHubDeployCoreIcebergUtils
           role-session-name: ${{ env.SESSION_NAME }}
           aws-region: ${{ env.AWS_REGION }}
 
-      - name: SAM Deploy AWS
-        run: cd infra/aws && sam build && sam deploy --force-upload
+      - name: SAM Deploy Layer
+        run: cd infra/layer && sam build && sam deploy
 
       - name: Get Version
         id: version
