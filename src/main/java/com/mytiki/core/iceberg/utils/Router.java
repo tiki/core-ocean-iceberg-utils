@@ -15,15 +15,15 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Router<I,O> {
-    private final Map<String, RequestHandler<I,O>> routes = new LinkedHashMap<>();
+public class Router<I, O> {
+    private final Map<String, RequestHandler<I, O>> routes = new LinkedHashMap<>();
 
-    public Router<I,O> add(String route, RequestHandler<I,O> handler){
+    public Router<I, O> add(String route, RequestHandler<I, O> handler) {
         routes.put(route, handler);
         return this;
     }
 
-    public Router<I,O> add(String method, String path, RequestHandler<I,O> handler){
+    public Router<I, O> add(String method, String path, RequestHandler<I, O> handler) {
         return add(toRoute(method, path), handler);
     }
 
@@ -33,9 +33,9 @@ public class Router<I,O> {
                 .filter(route::matches)
                 .findFirst();
         return routes.get(key.orElseThrow(() ->
-                new ApiExceptionBuilder(HttpStatusCode.NOT_FOUND)
-                        .message("Not Found")
-                        .build()))
+                        new ApiExceptionBuilder(HttpStatusCode.NOT_FOUND)
+                                .message("Not Found")
+                                .build()))
                 .handleRequest(request, context);
     }
 
