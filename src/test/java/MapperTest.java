@@ -18,14 +18,14 @@ public class MapperTest {
     public void Mapper_readValue_success() {
         String json = "{ \"id\":\"dummy\" }";
         ApiError deserialized = mapper.readValue(json, ApiError.class);
-        Assertions.assertEquals(deserialized.getId(), "dummy");
+        Assertions.assertEquals("dummy", deserialized.getId());
     }
 
     @Test
     public void Mapper_readValue_fail() {
         String json = "{ \"invalid\" }";
         ApiException ex = Assertions.assertThrows(ApiException.class, () -> mapper.readValue(json, ApiError.class));
-        Assertions.assertEquals(HttpStatusCode.BAD_REQUEST, ex.getStatus());
+        Assertions.assertEquals(ex.getStatus(), HttpStatusCode.BAD_REQUEST);
     }
 
     @Test
@@ -34,7 +34,7 @@ public class MapperTest {
         error.setId("dummy");
         String serialized = mapper.writeValueAsString(error);
         ApiError deserialized = mapper.readValue(serialized, ApiError.class);
-        Assertions.assertEquals(deserialized.getId(), "dummy");
+        Assertions.assertEquals("dummy", deserialized.getId());
     }
 }
 

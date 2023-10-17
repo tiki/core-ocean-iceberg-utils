@@ -6,7 +6,6 @@
 import com.amazonaws.services.lambda.runtime.events.APIGatewayV2HTTPEvent;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayV2HTTPResponse;
 import com.amazonaws.services.lambda.runtime.tests.annotations.Event;
-import com.mytiki.core.iceberg.utils.ApiError;
 import com.mytiki.core.iceberg.utils.ApiException;
 import com.mytiki.core.iceberg.utils.Router;
 import fixture.TestContext;
