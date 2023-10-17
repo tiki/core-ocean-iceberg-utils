@@ -15,27 +15,37 @@ import java.util.Map;
 import java.util.Properties;
 
 public class Iceberg extends GlueCatalog {
+    public static final String NAME = "glue_catalog";
+    public static final String CATALOG_NAME = "catalog-name";
+    public static final String CATALOG_IMPL = "catalog-impl";
+    public static final String WAREHOUSE = "warehouse";
+    public static final String IO_IMPL = "io-impl";
+    public static final String GLUE_SKIP_ARCHIVE = "glue.skip-archive";
+    public static final String PROPERTIES = "iceberg.properties";
     protected static final Logger logger = Logger.getLogger(Iceberg.class);
 
-    private final String warehouse;
+    private final Map<String, String> properties;
     private final Namespace database;
 
-    public Iceberg(Properties properties){
+    public Iceberg(Properties properties) {
         super();
-        Map<String, String> catalogProperties = new HashMap<>() {{
+        this.properties = new HashMap<>() {{
             put("catalog-name", properties.getProperty("catalog-name"));
             put("catalog-impl", properties.getProperty("catalog-impl"));
             put("warehouse", properties.getProperty("warehouse"));
             put("io-impl", properties.getProperty("io-impl"));
             put("glue.skip-archive", properties.getProperty("glue.skip-archive"));
         }};
-        warehouse = properties.getProperty("warehouse");
         database = Namespace.of(properties.getProperty("database-name"));
-        super.initialize("glue_catalog", catalogProperties);
+    }
+
+    public Iceberg initialize() {
+        super.initialize(NAME, properties);
+        return this;
     }
 
     public static Iceberg load() {
-        return Iceberg.load("iceberg.properties");
+        return Iceberg.load(PROPERTIES);
     }
 
     public static Iceberg load(String filename) {
@@ -52,11 +62,31 @@ public class Iceberg extends GlueCatalog {
         }
     }
 
-    public String getWarehouse() {
-        return warehouse;
+    public Map<String, String> getProperties() {
+        return properties;
     }
 
     public Namespace getDatabase() {
         return database;
+    }
+
+    public String getCatalogName() {
+        return properties.get(CATALOG_NAME);
+    }
+
+    public String getCatalogImpl() {
+        return properties.get(CATALOG_IMPL);
+    }
+
+    public String getWarehouse() {
+        return properties.get(WAREHOUSE);
+    }
+
+    public String getIoImpl() {
+        return properties.get(IO_IMPL);
+    }
+
+    public String getGlueSkipArchive() {
+        return properties.get(GLUE_SKIP_ARCHIVE);
     }
 }
