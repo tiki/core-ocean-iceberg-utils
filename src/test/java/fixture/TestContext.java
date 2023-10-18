@@ -9,8 +9,8 @@ import com.amazonaws.services.lambda.runtime.ClientContext;
 import com.amazonaws.services.lambda.runtime.CognitoIdentity;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
-import com.mytiki.core.iceberg.utils.Iceberg;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class TestContext implements Context {
 
@@ -67,7 +67,7 @@ public class TestContext implements Context {
     @Override
     public LambdaLogger getLogger() {
         return new LambdaLogger() {
-            private static final Logger logger = Logger.getLogger(LambdaLogger.class);
+            private static final Logger logger = LogManager.getLogger(LambdaLogger.class);
 
             @Override
             public void log(String s) {

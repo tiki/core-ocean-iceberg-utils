@@ -4,7 +4,8 @@
  */
 
 import com.mytiki.core.iceberg.utils.Initialize;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
@@ -13,11 +14,9 @@ import java.util.Properties;
 public class InitializeTest {
 
     @Test
-    public void Initialize_Logger_Success() {
-        Initialize.logger();
-        Logger logger = Logger.getLogger(InitializeTest.class);
-        Assertions.assertNotNull(logger);
-        logger.debug("test log");
+    public void Test_Logger_Output() {
+        Logger logger = Initialize.logger(InitializeTest.class);
+        logger.info("TESTING");
     }
 
     @Test
