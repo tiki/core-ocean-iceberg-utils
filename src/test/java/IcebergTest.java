@@ -5,8 +5,6 @@
 
 import com.mytiki.core.iceberg.utils.Env;
 import com.mytiki.core.iceberg.utils.Iceberg;
-import org.junit.Rule;
-import org.junit.contrib.java.lang.system.EnvironmentVariables;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

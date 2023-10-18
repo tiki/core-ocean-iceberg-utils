@@ -4,7 +4,6 @@
  */
 
 import com.mytiki.core.iceberg.utils.Initialize;
-import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
