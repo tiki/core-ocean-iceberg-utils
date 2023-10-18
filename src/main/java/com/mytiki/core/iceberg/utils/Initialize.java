@@ -5,16 +5,16 @@
 
 package com.mytiki.core.iceberg.utils;
 
-import org.apache.log4j.PropertyConfigurator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
 public class Initialize {
-
-    public static void logger(){
-        PropertyConfigurator.configure(Initialize.class.getClassLoader().getResource("log4j.properties"));
+    public static Logger logger(Class<?> clazz) {
+        return LogManager.getLogger(clazz);
     }
 
     public static Properties properties(String name) {
@@ -24,7 +24,7 @@ public class Initialize {
             Properties properties = new Properties();
             properties.load(input);
             return properties;
-        }catch (IOException ex) {
+        } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
     }
