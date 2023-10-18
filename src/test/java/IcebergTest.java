@@ -62,8 +62,9 @@ public class IcebergTest {
     @Test
     public void Test_Load_Env_Success() {
         String override = "override";
-        Env env = Mockito.mock(Env.class);
-        Mockito.doReturn(override).when(env).get(Iceberg.ENV_PREFIX + Iceberg.WAREHOUSE);
+        Env env = Mockito.spy(new Env());
+        String envVar = env.name(Iceberg.ENV_PREFIX + Iceberg.WAREHOUSE);
+        Mockito.doReturn(override).when(env).get(envVar);
 
         Iceberg iceberg = Mockito.spy(Iceberg.load(env));
         Mockito.doNothing().when(iceberg).initialize(Mockito.any(), Mockito.any());

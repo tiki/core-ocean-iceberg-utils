@@ -24,7 +24,7 @@ public class Iceberg extends GlueCatalog {
     public static final String GLUE_SKIP_ARCHIVE = "glue.skip-archive";
     public static final String DATABASE_NAME = "database-name";
     public static final String PROPERTIES = "iceberg.properties";
-    public static final String ENV_PREFIX = "core.iceberg.utils.";
+    public static final String ENV_PREFIX = "ICEBERG_";
     protected static final Logger logger = LogManager.getLogger(Iceberg.class);
 
     private final Map<String, String> properties;
@@ -46,12 +46,12 @@ public class Iceberg extends GlueCatalog {
     public static Iceberg load(Env env) {
         Properties properties = Initialize.properties(PROPERTIES);
 
-        String catalogName = env.get(ENV_PREFIX+CATALOG_NAME);
-        String catalogImpl = env.get(ENV_PREFIX+CATALOG_IMPL);
-        String warehouse = env.get(ENV_PREFIX+WAREHOUSE);
-        String ioImpl = env.get(ENV_PREFIX+IO_IMPL);
-        String glueSkipArchive = env.get(ENV_PREFIX+GLUE_SKIP_ARCHIVE);
-        String databaseName = env.get(ENV_PREFIX+DATABASE_NAME);
+        String catalogName = env.get(env.name(ENV_PREFIX+CATALOG_NAME));
+        String catalogImpl = env.get(env.name(ENV_PREFIX+CATALOG_IMPL));
+        String warehouse = env.get(env.name(ENV_PREFIX+WAREHOUSE));
+        String ioImpl = env.get(env.name(ENV_PREFIX+IO_IMPL));
+        String glueSkipArchive = env.get(env.name(ENV_PREFIX+GLUE_SKIP_ARCHIVE));
+        String databaseName = env.get(env.name(ENV_PREFIX+DATABASE_NAME));
 
         Map<String, String> cfg = new HashMap<>() {{
             put(CATALOG_NAME, catalogName != null ? catalogName : properties.getProperty(CATALOG_NAME));

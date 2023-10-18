@@ -6,11 +6,11 @@
 package com.mytiki.core.iceberg.utils;
 
 public class Env {
-    public String get(String name) {
-        return System.getenv(name);
+    public String get(String var) {
+        return System.getenv(var);
     }
 
-    public static String var(String name) {
-        return System.getenv(name);
+    public String name(String var) {
+        return var.replace(".", "_").toUpperCase();
     }
 }
