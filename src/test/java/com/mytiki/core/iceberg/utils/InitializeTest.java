@@ -3,9 +3,10 @@
  * MIT license. See LICENSE file in root directory.
  */
 
-package com.mytiki.core.iceberg.utils;import org.apache.logging.log4j.Logger;
-import org.junit.Test;
+package com.mytiki.core.iceberg.utils;
+import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.Properties;
 

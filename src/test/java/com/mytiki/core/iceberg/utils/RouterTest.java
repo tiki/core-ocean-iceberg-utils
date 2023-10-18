@@ -3,7 +3,8 @@
  * MIT license. See LICENSE file in root directory.
  */
 
-package com.mytiki.core.iceberg.utils;import com.amazonaws.services.lambda.runtime.events.APIGatewayV2HTTPEvent;
+package com.mytiki.core.iceberg.utils;
+import com.amazonaws.services.lambda.runtime.events.APIGatewayV2HTTPEvent;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayV2HTTPResponse;
 import com.amazonaws.services.lambda.runtime.tests.annotations.Event;
 import com.mytiki.core.iceberg.utils.fixture.TestContext;

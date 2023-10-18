@@ -3,11 +3,9 @@
  * MIT license. See LICENSE file in root directory.
  */
 
-package com.mytiki.core.iceberg.utils;import com.mytiki.core.iceberg.utils.ApiError;
-import com.mytiki.core.iceberg.utils.ApiException;
-import com.mytiki.core.iceberg.utils.Mapper;
-import org.junit.Test;
+package com.mytiki.core.iceberg.utils;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import software.amazon.awssdk.http.HttpStatusCode;
 
 public class MapperTest {
