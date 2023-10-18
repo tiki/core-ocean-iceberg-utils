@@ -3,7 +3,7 @@
  * MIT license. See LICENSE file in root directory.
  */
 
-import com.mytiki.core.iceberg.utils.ApiError;
+package com.mytiki.core.iceberg.utils;import com.mytiki.core.iceberg.utils.ApiError;
 import com.mytiki.core.iceberg.utils.ApiException;
 import com.mytiki.core.iceberg.utils.Mapper;
 import org.junit.Test;

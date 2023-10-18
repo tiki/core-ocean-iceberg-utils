@@ -3,7 +3,7 @@
  * MIT license. See LICENSE file in root directory.
  */
 
-package fixture;
+package com.mytiki.core.iceberg.utils.fixture;
 
 import com.amazonaws.services.lambda.runtime.ClientContext;
 import com.amazonaws.services.lambda.runtime.CognitoIdentity;

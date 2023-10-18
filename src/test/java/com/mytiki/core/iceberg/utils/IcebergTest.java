@@ -3,7 +3,7 @@
  * MIT license. See LICENSE file in root directory.
  */
 
-import com.mytiki.core.iceberg.utils.Env;
+package com.mytiki.core.iceberg.utils;import com.mytiki.core.iceberg.utils.Env;
 import com.mytiki.core.iceberg.utils.Iceberg;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
