@@ -161,8 +161,7 @@
         <configuration>
           <createDependencyReducedPom>false</createDependencyReducedPom>
           <transformers>
-            <transformer implementation="com.github.edwgiz.mavenShadePlugin.log4j2CacheTransformer.PluginsCacheFileTransformer">
-                        </transformer>
+            <transformer implementation="org.apache.logging.log4j.maven.plugins.shade.transformer.Log4j2PluginCacheFileTransformer"/>
           </transformers>
         </configuration>
         <executions>
@@ -175,9 +174,9 @@
         </executions>
         <dependencies>
           <dependency>
-            <groupId>com.github.edwgiz</groupId>
-            <artifactId>maven-shade-plugin.log4j2-cachefile-transformer</artifactId>
-            <version>2.15</version>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-transform-maven-shade-plugin-extensions</artifactId>
+            <version>0.1.0</version>
           </dependency>
         </dependencies>
       </plugin>
@@ -193,8 +192,8 @@
             </goals>
             <configuration>
               <outputDirectory>
-                                ${project.build.directory}/classes/java/lib
-                            </outputDirectory>
+                ${project.build.directory}/classes/java/lib
+              </outputDirectory>
               <includeScope>runtime</includeScope>
               <excludeScope>test</excludeScope>
             </configuration>
