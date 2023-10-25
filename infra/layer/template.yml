@@ -14,7 +14,7 @@ Resources:
         - java17
     Metadata:
       BuildMethod: java17
-      BuildArchitecture: arm64
+      BuildArchitecture: x86_64
 
 Outputs:
   Arn:
