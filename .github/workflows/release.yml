@@ -46,6 +46,7 @@ jobs:
 
       - name: Prepare Zip
         run: |
+          mvn clean package
           mkdir -p target/java/lib
           cp target/core-iceberg-utils-*.jar target/java/lib/
           cd target && zip -r core-iceberg-utils.zip java
