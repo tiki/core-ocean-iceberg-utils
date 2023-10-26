@@ -45,7 +45,10 @@ jobs:
           aws-region: ${{ vars.AWS_REGION }}
 
       - name: Prepare Zip
-        run: mvn prepare-package
+        run: |
+          mkdir -p target/java/lib
+          cp target/core-iceberg-utils-*.jar target/java/lib/
+          cd target && zip -r core-iceberg-utils.zip java
 
       - name: SAM Deploy Role
         run: cd infra/role && sam build && sam package && sam deploy
