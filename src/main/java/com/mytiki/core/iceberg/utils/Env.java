@@ -11,6 +11,9 @@ public class Env {
     }
 
     public String name(String var) {
-        return var.replace(".", "_").toUpperCase();
+        return var
+                .replace(".", "_")
+                .replace("-", "_")
+                .toUpperCase();
     }
 }
