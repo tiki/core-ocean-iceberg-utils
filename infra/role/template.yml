@@ -1,12 +1,12 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: Core Iceberg Utility Role
+Description: Core Ocean Iceberg Utils Layer Role
 
 Parameters:
   RoleName:
     Description: Name of the IAM Role for the deployment
     Type: String
-    Default: "GitHubDeployCoreIcebergUtils"
+    Default: "GitHubDeployCoreOceanIcebergUtils"
 
 Resources:
   Role:
