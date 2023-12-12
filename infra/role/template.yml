@@ -17,7 +17,7 @@ Resources:
         SemanticVersion: 0.0.3
       Parameters:
         GitHubOrg: tiki
-        RepositoryName: core-iceberg-utils
+        RepositoryName: core-ocean-iceberg-utils
         RoleName: !Ref RoleName
 
   Policy:
