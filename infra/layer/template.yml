@@ -6,7 +6,7 @@ Resources:
   Layer:
     Type: AWS::Serverless::LayerVersion
     Properties:
-      LayerName: core-iceberg-utils
+      LayerName: core-ocean-iceberg-utils
       Description: Utilities and dependencies for core-iceberg
       ContentUri: ../../target/core-iceberg-utils.zip
       LicenseInfo: MIT
