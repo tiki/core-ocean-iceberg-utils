@@ -1,12 +1,12 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: Core Iceberg Utility Layer
+Description: Core Ocean Iceberg Utils Layer
 
 Resources:
   Layer:
     Type: AWS::Serverless::LayerVersion
     Properties:
-      LayerName: core-iceberg-utils
+      LayerName: core-ocean-iceberg-utils
       Description: Utilities and dependencies for core-iceberg
       ContentUri: ../../target/core-iceberg-utils.zip
       LicenseInfo: MIT

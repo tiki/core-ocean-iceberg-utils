@@ -29,7 +29,7 @@ jobs:
           sed -i 's/${AWS::AccountId}/${{ secrets.AWS_ACCOUNT_ID }}/' infra/role/template.yml
 
       - name: Set up JDK
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: '20'
           distribution: 'zulu'
@@ -57,7 +57,7 @@ jobs:
       - name: AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GitHubDeployCoreIcebergUtils
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GitHubDeployCoreOceanIcebergUtils
           role-session-name: ${{ env.SESSION_NAME }}
           aws-region: ${{ env.AWS_REGION }}
 
