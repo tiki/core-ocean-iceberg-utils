@@ -32,7 +32,7 @@ Resources:
           - Effect: Allow
             Action: cloudformation:*
             Resource:
-              - !Sub arn:aws:cloudformation:${AWS::Region}:${AWS::AccountId}:stack/core-iceberg-utils-layer/*
+              - !Sub arn:aws:cloudformation:${AWS::Region}:${AWS::AccountId}:stack/core-ocean-iceberg-utils-layer/*
               - arn:aws:cloudformation:us-east-2:aws:transform/Serverless-2016-10-31
           - Effect: Allow
             Action: cloudformation:ListStacks
@@ -54,10 +54,10 @@ Resources:
               - lambda:GetLayerVersionPolicy
               - lambda:AddLayerVersionPermission
               - lambda:RemoveLayerVersionPermission
-            Resource: !Sub arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:layer:core-iceberg-utils:*
+            Resource: !Sub arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:layer:core-ocean-iceberg-utils:*
           - Effect: Allow
             Action: lambda:PublishLayerVersion
-            Resource: !Sub arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:layer:core-iceberg-utils
+            Resource: !Sub arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:layer:core-ocean-iceberg-utils
           - Effect: Allow
             Action:
               - s3:PutObject
